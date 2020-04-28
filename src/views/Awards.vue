@@ -1,15 +1,19 @@
 <template>
   <div>
-    <el-table :data="tableData" style="width: 100%" border height="500">
-      <el-table-column fixed prop="date" label="日期" width="150"></el-table-column>
-      <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-      <el-table-column prop="province" label="省份" width="120"></el-table-column>
-      <el-table-column prop="city" label="市区" width="120"></el-table-column>
-      <el-table-column prop="address" label="地址" width="300"></el-table-column>
-      <el-table-column prop="zip" label="邮编" width="120"></el-table-column>
-      <el-table-column label="操作" fixed="right" width="150">
+      <el-button type="primary" plain class="add" @click="add()">添加</el-button>
+     <el-table :data="tableData" style="width: 100%" border >
+      <el-table-column prop="studentId" label="学号"></el-table-column>
+      <el-table-column prop="userName" label="姓名"></el-table-column>
+      <el-table-column prop="grade" label="年级"></el-table-column>
+      <el-table-column prop="major" label="专业"></el-table-column>
+      <el-table-column prop="gradeClass" label="班级"></el-table-column>
+      <el-table-column prop="type" label="奖学金类型"></el-table-column>
+      <el-table-column prop="jiaQuan" label="加权"></el-table-column>
+      <el-table-column prop="zongHe" label="综合"></el-table-column>
+      <el-table-column prop="caoXing" label="操行"></el-table-column>
+       <el-table-column label="操作" fixed="right" >
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <!-- <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button> -->
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -19,9 +23,9 @@
       @current-change="handleCurrentChange"
       :current-page="currentPage4"
       :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
+      :page-size="pageSize"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400"
+      :total="total"
     ></el-pagination>
   </div>
 </template>
@@ -29,76 +33,53 @@
 export default {
   data() {
     return {
-      tableData: [
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-08",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-06",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        },
-        {
-          date: "2016-05-07",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333
-        }
-      ],
-      currentPage4: 4
+     tableData: [],
+      total: 0,
+      pageSize: 15,
+      nowPage: 1,
+      currentPage: 1,
     };
   },
   methods: {
+    add(){
+     this.$router.push({ name: "add-wards"});
+    },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
     },
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
-    }
+    },
+    getInfo() {
+      let data = {
+        year: '2019',
+        sortKind: 'jiaquan',
+        nowPage: this.nowPage,
+        pageSize: this.pageSize   
+      };
+      axios({
+        method: "post",
+        url: "/scholarshiped/getList",
+        data: Qs.stringify(data)
+      })
+        .then(res => {
+          if (res.data.code == 0) {
+            this.tableData = res.data.data.scholarshipedVoList;
+          }
+        })
+        .catch(res => {
+          console.log(res);
+        });
+    },
+  },
+  created(){
+    this.getInfo();
   }
 };
 </script>
 <style scoped>
+.add {
+  float: right;
+  margin-bottom: 30px;
+}
 </style>

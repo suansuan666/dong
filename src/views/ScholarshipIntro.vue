@@ -1,5 +1,5 @@
 <template>
-  <div  >
+  <div class="scholarship-intro" >
      <el-button type="primary" plain class="add" @click="add()">新增奖学金</el-button>
     <el-table :data="tableData" style="width: 100%" border :row-class-name="tableRowClassName">
       <el-table-column prop="name" label="奖学金名称">
@@ -38,13 +38,11 @@
           <span v-else>{{scope.row.classCount}}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="description" label="具体要求">
+      <el-table-column  label="具体要求">
         <template slot-scope="scope">
-          <el-input
-          v-model="scope.row.description"
-          v-if="edit && scope.row.index == num"
-          ></el-input>
-          <span v-else>{{scope.row.description}}</span>
+          <router-link
+            :to="{name: 'scholar-detail',params: { id: scope.row.id}}"
+          >详情</router-link>
         </template>
       </el-table-column>
       <el-table-column label="操作" fixed="right" width="200">
@@ -88,6 +86,53 @@ export default {
     handleEdit(index){
       this.edit=!this.edit;
       this.num=index;
+       let data = {
+        id: this.tableData[index].id,
+        name: this.tableData[index].name,
+        money:this.tableData[index].money,
+        count:this.tableData[index].count,
+        classCount:this.tableData[index].classCount,
+        description:this.tableData[index].description
+      };
+      axios({
+        method: "post",
+        url: "/scholarship/updateScholarshipById",
+        data: Qs.stringify(data)
+      })
+        .then(res => {
+          if (res.data.code == 0) {
+             this.$message({
+              message: "修改成功",
+              type: "success"
+            });
+          }
+         this.getInfo();
+        })
+        .catch(res => {
+          console.log(res);
+        });
+    },
+    handleDelete(index){
+       let data = {
+        id: this.tableData[index].id,
+      };
+      axios({
+        method: "post",
+        url: "/scholarship/deleteScholarship",
+        data: Qs.stringify(data)
+      })
+        .then(res => {
+          if (res.data.code == 0) {
+             this.$message({
+              message: "删除成功",
+              type: "success"
+            });
+          }
+         this.getInfo();
+        })
+        .catch(res => {
+          console.log(res);
+        });
     },
     tableRowClassName({row,rowIndex}){
       row.index=rowIndex;
@@ -105,7 +150,7 @@ export default {
       };
       axios({
         method: "post",
-        url: "http://39.106.97.215:8080/scholarship/getAllScholarship",
+        url: "/scholarship/getAllScholarship",
         data: Qs.stringify(data)
       })
         .then(res => {
@@ -121,7 +166,6 @@ export default {
     },
     add(){
       this.$router.push({ name: "add-scholarship",params: {userId: this.$route.params.userId} });
-      
     }
   },
   created() {
@@ -133,5 +177,8 @@ export default {
 .add{
   float: right;
   margin: 30px 0;
+}
+.scholarship-intro a{
+  color:#409EFF;
 }
 </style>

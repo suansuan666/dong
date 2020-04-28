@@ -1,16 +1,25 @@
 <template>
-  <div class="add-scholarship">
+  <div class="add-wards">
     <el-form :label-position="labelPosition" label-width="85px" :model="form">
-      <el-form-item label="奖学金名称">
+      <el-form-item label="学号">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
-      <el-form-item label="金额">
+      <el-form-item label="姓名">
         <el-input v-model="form.money"></el-input>
       </el-form-item>
-      <el-form-item label="总人数">
+      <el-form-item label="年级">
         <el-input v-model="form.count"></el-input>
       </el-form-item>
-      <el-form-item label="年级分配">
+      <el-form-item label="专业">
+        <el-input v-model="form.classCount"></el-input>
+      </el-form-item>
+      <el-form-item label="班级">
+        <el-input v-model="form.classCount"></el-input>
+      </el-form-item>
+      <el-form-item label="奖学金类型">
+        <el-input v-model="form.classCount"></el-input>
+      </el-form-item>
+      <el-form-item label="加权">
         <el-input v-model="form.classCount"></el-input>
       </el-form-item>
       <el-form-item label="具体要求">

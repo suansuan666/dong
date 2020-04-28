@@ -13,8 +13,10 @@ import Notice from '../views/Notice.vue'
 import AddNotice from '../views/AddNotice.vue'
 import NoticeDetail from '../views/NoticeDetail.vue'
 import ScholarshipIntro from '../views/ScholarshipIntro.vue'
+import ScholarDetail from '../views/ScholarDetail.vue'
 import AddScholarship from '../views/AddScholarship.vue'
 import FindPassword from '../views/FindPassword.vue'
+import AddWards from '../views/AddWards'
 Vue.use(VueRouter)
 
   const routes = [
@@ -64,6 +66,11 @@ Vue.use(VueRouter)
         component:Awards
       },
       {
+        path:'add-wards',
+        name:'add-wards',
+        component:AddWards
+      },
+      {
         path: 'mine',
         name: 'mine',
         component:Mine
@@ -77,6 +84,11 @@ Vue.use(VueRouter)
         path:'scholarship-intro',
         name:'scholarship-intro',
         component:ScholarshipIntro
+      },
+      {
+        path:'scholar-detail/:id',
+        name:'scholar-detail',
+        component:ScholarDetail
       },
       {
         path:'my-awards',
