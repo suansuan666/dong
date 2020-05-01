@@ -87,8 +87,10 @@ export default {
   },
   created(){
     this.userId=this.$route.params.userId;
+    this.$router.push({name:'notice'})
     console.log("----",this.$route.params.userId)
-  }
+  },
+  
 };
 </script>
 <style scoped>

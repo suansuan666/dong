@@ -1,6 +1,6 @@
 <template>
   <div class="scholarship-intro" >
-     <el-button type="primary" plain class="add" @click="add()">新增奖学金</el-button>
+     <el-button type="primary" plain class="add" @click="add()" v-if="show">新增奖学金</el-button>
     <el-table :data="tableData" style="width: 100%" border :row-class-name="tableRowClassName">
       <el-table-column prop="name" label="奖学金名称">
         <template slot-scope="scope">
@@ -45,7 +45,7 @@
           >详情</router-link>
         </template>
       </el-table-column>
-      <el-table-column label="操作" fixed="right" width="200">
+      <el-table-column label="操作" fixed="right" width="200" v-if="show">
         <template slot-scope="scope">
            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-if="edit && scope.row.index == num">保存</el-button>
           <el-button size="mini" @click="Edit(scope.$index, scope.row)" v-else>修改</el-button>
@@ -75,7 +75,8 @@ export default {
       pageSize: 15,
       nowPage: 1,
       currentPage: 1,
-      edit:false
+      edit:false,
+      show:false
     };
   },
   methods: {
@@ -166,10 +167,28 @@ export default {
     },
     add(){
       this.$router.push({ name: "add-scholarship",params: {userId: this.$route.params.userId} });
+    },
+     getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(";");
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    },
+    check(){    
+      var user=this.getCookie("role");
+      if(user == 1){
+        this.show=true;
+      }
     }
   },
   created() {
     this.getInfo();
+    this.check()
   }
 };
 </script>

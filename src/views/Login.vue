@@ -3,7 +3,7 @@
     <div class="login-window" >
       <span class="title">欢迎登录</span>
       <el-input prefix-icon="el-icon-user" v-model="id" placeholder="学号"  ></el-input>
-      <el-input prefix-icon="el-icon-lock" v-model="password" placeholder="密码"></el-input>
+      <el-input prefix-icon="el-icon-lock" v-model="password" placeholder="密码" show-password></el-input>
       <router-link to="/find-password" class="forget">忘记密码？</router-link>
       <el-button type="primary" plain @click="login()">登录</el-button>
       <router-link to="/regist"><el-button plain >注册</el-button></router-link>

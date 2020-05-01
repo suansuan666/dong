@@ -17,6 +17,7 @@ import ScholarDetail from '../views/ScholarDetail.vue'
 import AddScholarship from '../views/AddScholarship.vue'
 import FindPassword from '../views/FindPassword.vue'
 import AddWards from '../views/AddWards'
+import Apply from '../views/Apply.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -41,7 +42,7 @@ Vue.use(VueRouter)
     component: Home,
     children: [
       {
-        path:'/home/:userId',
+        path:'',
         name:'notice',
         component:Notice
       },
@@ -108,6 +109,11 @@ Vue.use(VueRouter)
         path:'add-scholarship',
         name:'add-scholarship',
         component:AddScholarship
+      },
+      {
+        path:'apply',
+        name:'apply',
+        component:Apply
       }
     ]
   },

@@ -9,19 +9,18 @@
       <el-table-column prop="type" label="奖学金类型"></el-table-column>
       <el-table-column prop="jiaQuan" label="加权"></el-table-column>
       <el-table-column prop="zongHe" label="综合"></el-table-column>
-      <el-table-column prop="caoXing" label="操行"></el-table-column>
-       <el-table-column label="操作" fixed="right" width="150">
+      <el-table-column prop="caoXIng" label="操行"></el-table-column>
+       <!-- <el-table-column label="操作" fixed="right" width="150">
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-      :page-sizes="[100, 200, 300, 400]"
+      :page-sizes="[10, 15, 20, 30]"
       :page-size="pageSize"
       layout="total, sizes, prev, pager, next, jumper"
       :total="total"
@@ -64,6 +63,7 @@ export default {
         .then(res => {
           if (res.data.code == 0) {
             this.tableData = res.data.data.scholarshipedVoList;
+             this.total=res.data.data.pageInfo.total;
           }
         })
         .catch(res => {

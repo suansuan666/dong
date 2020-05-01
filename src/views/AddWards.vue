@@ -4,22 +4,13 @@
       <el-form-item label="学号">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
-      <el-form-item label="姓名">
+      <el-form-item label="金额">
         <el-input v-model="form.money"></el-input>
       </el-form-item>
-      <el-form-item label="年级">
+      <el-form-item label="总人数">
         <el-input v-model="form.count"></el-input>
       </el-form-item>
-      <el-form-item label="专业">
-        <el-input v-model="form.classCount"></el-input>
-      </el-form-item>
-      <el-form-item label="班级">
-        <el-input v-model="form.classCount"></el-input>
-      </el-form-item>
-      <el-form-item label="奖学金类型">
-        <el-input v-model="form.classCount"></el-input>
-      </el-form-item>
-      <el-form-item label="加权">
+      <el-form-item label="班级人数分配">
         <el-input v-model="form.classCount"></el-input>
       </el-form-item>
       <el-form-item label="具体要求">
@@ -45,14 +36,14 @@ export default {
       }
     };
   },
-  methods:{
-   submit() {
+  methods: {
+    submit() {
       let data = {
         name: this.form.name,
         money: this.form.money,
-        count:this.form.count,
-        classCount:this.form.classCount,
-        description:this.form.description
+        count: this.form.count,
+        classCount: this.form.classCount,
+        description: this.form.description
       };
       axios({
         method: "post",
@@ -65,7 +56,7 @@ export default {
               message: "添加成功",
               type: "success"
             });
-             this.$router.push({name:'scholarship-intro'})
+            this.$router.push({ name: "scholarship-intro" });
           }
         })
         .catch(res => {
@@ -78,12 +69,12 @@ export default {
 <style scoped>
 </style>
 <style>
-.add-scholarship .el-form-item{
-    width:400px;
+.add-scholarship .el-form-item {
+  width: 400px;
 }
-.add-scholarship .el-form{
-    width:500px;
-    margin:0 auto;
-    margin-top:60px;
+.add-scholarship .el-form {
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 60px;
 }
 </style>
