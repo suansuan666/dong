@@ -59,7 +59,7 @@ export default {
             });
             this.tableData.splice(index, 1);
           }
-        })
+        }) 
         .catch(res => {
           console.log(res);
         });

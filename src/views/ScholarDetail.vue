@@ -17,7 +17,7 @@
         <el-input v-model="form.description" type="textarea" :rows="5" :disabled="isdisable"></el-input>
       </el-form-item>
     </el-form>
-    
+     <el-button type="danger" @click="apply()">申请</el-button>
   </div>
 </template>
 <script>
@@ -57,6 +57,9 @@ export default {
           console.log(res);
         });
     },
+    apply(){
+      this.$router.push({name:'add-scholarship'})
+    }
   },
   created(){
     this.getInfo();
@@ -72,6 +75,7 @@ export default {
   width: 500px;
   margin: 0 auto;
   margin-top: 60px;
+  
 }
 .scholar-detail .el-input.is-disabled .el-input__inner ,.scholar-detail .el-textarea.is-disabled .el-textarea__inner{
   background: none;

@@ -95,6 +95,9 @@ export default {
             url:'/user/addUser',
             data:Qs.stringify(data)
         }).then(res =>{
+          if(res.data.code == 0){
+            this.$router.push({name:'login'})
+          }
             console.log(res)
         }).catch(res =>{
             console.log(res)
