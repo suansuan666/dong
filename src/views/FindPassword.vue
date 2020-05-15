@@ -38,34 +38,17 @@
 </el-form>
       <el-button type="danger" @click="reset()">重置</el-button>
     </div>
-    
   </div>
 </template>
 <script>
 import axios from "axios";
 import Qs from "qs";
+import MessageBoard from '../components/MessageBoard.vue'
 export default {
- data() {
-     
-      // var validatePass = (rule, value, callback) => {
-      //   if (value === '') {
-      //     callback(new Error('请输入密码'));
-      //   } else {
-      //     if (this.ruleForm.checkPass !== '') {
-      //       this.$refs.ruleForm.validateField('checkPass');
-      //     }
-      //     callback();
-      //   }
-      // };
-      // var validatePass2 = (rule, value, callback) => {
-      //   if (value === '') {
-      //     callback(new Error('请再次输入密码'));
-      //   } else if (value !== this.ruleForm.pass) {
-      //     callback(new Error('两次输入密码不一致!'));
-      //   } else {
-      //     callback();
-      //   }
-      // };
+  components:{
+    'v-message':MessageBoard
+  },
+ data() {   
       return {
         ruleForm: {
           studentId:'',
@@ -73,14 +56,6 @@ export default {
           checkPass: '',
          
         },
-        // rules: {
-        //   pass: [
-        //     { validator: validatePass, trigger: 'blur' }
-        //   ],
-        //   checkPass: [
-        //     { validator: validatePass2, trigger: 'blur' }
-        //   ],
-        // },
         active:0,
         labelPosition: "right",
         form:{
@@ -198,5 +173,19 @@ export default {
 .find-password .el-step.is-horizontal .el-step__line {
   width: 470px;
 }
+.el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0;
+  }
 
+  .el-carousel__item:nth-child(2n) {
+     background-color: #99a9bf;
+  }
+  
+  .el-carousel__item:nth-child(2n+1) {
+     background-color: #d3dce6;
+  }
 </style>

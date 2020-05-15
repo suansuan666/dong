@@ -18,6 +18,7 @@ import AddScholarship from '../views/AddScholarship.vue'
 import FindPassword from '../views/FindPassword.vue'
 import AddWards from '../views/AddWards'
 import Apply from '../views/Apply.vue'
+
 Vue.use(VueRouter)
 
   const routes = [
@@ -114,7 +115,8 @@ Vue.use(VueRouter)
         path:'apply',
         name:'apply',
         component:Apply
-      }
+      },
+      
     ]
   },
  

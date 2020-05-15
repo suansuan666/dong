@@ -58,7 +58,7 @@ export default {
         });
     },
     apply(){
-      this.$router.push({name:'add-scholarship'})
+      this.$router.push({name:'apply'})
     }
   },
   created(){

@@ -24,7 +24,7 @@
                 <span slot="title">奖学金介绍</span>
               </el-menu-item>
             </router-link>
-            <router-link :to="{name:'application-summary',params: {userId: this.userId}}">
+            <router-link :to="{name:'application-summary',params: {userId: this.userId}}" v-if="manager">
               <el-menu-item index="3">
                 <i class="el-icon-postcard"></i>
                 <span slot="title">当年申请汇总</span>
@@ -36,19 +36,19 @@
                 <span slot="title">当年获奖公布</span>
               </el-menu-item>
             </router-link>
-            <router-link :to="{name:'all-awards',params: {userId: this.userId}}">
+            <router-link :to="{name:'all-awards',params: {userId: this.userId}}" v-if="manager">
               <el-menu-item index="5">
                 <i class="el-icon-trophy"></i>
                 <span slot="title">历年获奖情况</span>
               </el-menu-item>
             </router-link>
-            <router-link :to="{name:'my-awards',params: {userId: this.userId}}">
+            <router-link :to="{name:'my-awards',params: {userId: this.userId}}" v-if="student">
               <el-menu-item index="6">
                 <i class="el-icon-trophy-1"></i>
                 <span slot="title">我的获奖情况</span>
               </el-menu-item>
             </router-link>
-            <router-link :to="{name:'my-application',params: {userId: this.userId}}">
+            <router-link :to="{name:'my-application',params: {userId: this.userId}}" v-if="student">
               <el-menu-item index="7">
                 <i class="el-icon-tickets"></i>
                 <span slot="title">我的申请</span>
@@ -73,7 +73,9 @@
 export default {
   data(){
     return{
-      userId:''
+      userId:'',
+      manger:false,
+      student:false,
     }
   },
   methods: {
@@ -82,16 +84,36 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
-    }
+    },
+     getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(";");
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    },
+     check(){    
+      var user=this.getCookie("role");
+      if(user == 1){
+        this.manger=true;
+      }
+      if(user == 2){
+        this.student=true;
+      }
     
-  },
+  }},
   created(){
     this.userId=this.$route.params.userId;
     this.$router.push({name:'notice'})
-    console.log("----",this.$route.params.userId)
+    console.log("----",this.$route.params.userId);
+    this.check()
   },
   
-};
+  }
 </script>
 <style scoped>
 .home .el-menu {

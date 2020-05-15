@@ -19,12 +19,19 @@
       layout="total, sizes, prev, pager, next, jumper"
       :total="total"
     ></el-pagination>
+   <v-message />
+ 
   </div>
 </template>
 <script>
 import axios from "axios";
 import Qs from "qs";
+import MessageBoard from '../components/MessageBoard.vue'
+
 export default {
+  components:{
+    'v-message':MessageBoard
+  },
   data() {
     return {
       tableData: [],
@@ -32,7 +39,8 @@ export default {
       pageSize: 15,
       nowPage: 1,
       currentPage: 1,
-      show: false
+      show: false,
+      
     };
   },
 
@@ -62,10 +70,10 @@ export default {
       }
       return "";
     },
-    check(){    
-      var user=this.getCookie("role");
-      if(user == 1){
-        this.show=true;
+    check() {
+      var user = this.getCookie("role");
+      if (user == 1) {
+        this.show = true;
       }
     }
   },
@@ -112,6 +120,7 @@ a {
   -webkit-box-orient: vertical;
 }
 .el-pagination {
-  margin-top: 50px;
+  margin: 50px 0;
+
 }
 </style>
