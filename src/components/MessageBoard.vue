@@ -15,12 +15,12 @@
               <span class="username">{{item.userName}}</span>
               <p class="comment">{{item.comment}}</p>
             </div>
-            <el-button type="danger" @click="delComment(item.id)" class="del" size="small">删除</el-button>
+            <el-button type="danger" @click="delComment(item.id)" class="del" size="small" v-if="0">删除</el-button>
           </div>
           <div class="reply-box">
             <span class="reply-label">回复</span>
             <p class="comment">{{reply}}</p>
-             <el-button type="danger" @click="delReply(item.id)" class="del" size="small">删除</el-button>
+             <el-button type="danger" @click="delReply(item.id)" class="del" size="small" v-if="0">删除</el-button>
           </div>
         </li>
       </ul>
@@ -182,7 +182,8 @@ export default {
   background: rgb(84, 92, 100);
 }
 .message-board .field-comment {
-  width: 430px;
+  width: 420px;
+  margin-right: 10px;
 }
 
 .wrapper {
@@ -190,7 +191,8 @@ export default {
   width: 500px;
   margin: 0 auto;
   padding: 5px;
-  color: white
+  color: white;
+  padding-top:15px;
 }
 li {
   list-style: none;

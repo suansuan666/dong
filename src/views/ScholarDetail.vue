@@ -17,13 +17,18 @@
         <el-input v-model="form.description" type="textarea" :rows="5" :disabled="isdisable"></el-input>
       </el-form-item>
     </el-form>
-     <el-button type="danger" @click="apply()">申请</el-button>
+     <el-button type="danger" @click="apply()" class="apply">申请</el-button>
+   <v-message />
   </div>
 </template>
 <script>
 import axios from "axios";
 import Qs from "qs";
+import MessageBoard from '../components/MessageBoard.vue'
 export default {
+   components:{
+    'v-message':MessageBoard
+  },
   data() {
     return {
       isdisable: true,
@@ -81,5 +86,10 @@ export default {
   background: none;
   color: black;
   border: none;
+}
+</style>
+<style scoped>
+.apply{
+  margin-bottom: 30px;
 }
 </style>

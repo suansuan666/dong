@@ -74,7 +74,7 @@ export default {
   data(){
     return{
       userId:'',
-      manger:false,
+      manager:false,
       student:false,
     }
   },
@@ -99,7 +99,8 @@ export default {
      check(){    
       var user=this.getCookie("role");
       if(user == 1){
-        this.manger=true;
+        
+        this.manager=true;
       }
       if(user == 2){
         this.student=true;
@@ -117,7 +118,7 @@ export default {
 </script>
 <style scoped>
 .home .el-menu {
-  height: 100vh;
+  height: 100%;
   padding-top: 50px;
 }
 </style>
