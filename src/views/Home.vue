@@ -1,6 +1,13 @@
 <template>
   <div class="home">
     <el-container>
+        <el-header>
+          <h2>信 息 学 院 奖 学 金 管 理 系 统</h2>
+          <div class="header-nav">
+            <span class="username">{{userName}}</span>
+            <router-link to="/" class="login-out">退出</router-link>
+          </div>
+        </el-header>
       <el-container>
         <el-aside width="300px">
           <el-menu
@@ -76,6 +83,7 @@ export default {
       userId:'',
       manager:false,
       student:false,
+      userName:''
     }
   },
   methods: {
@@ -98,8 +106,8 @@ export default {
     },
      check(){    
       var user=this.getCookie("role");
-      if(user == 1){
-        
+      this.userName=this.getCookie('userName');
+      if(user == 1){   
         this.manager=true;
       }
       if(user == 2){
@@ -119,6 +127,25 @@ export default {
 <style scoped>
 .home .el-menu {
   height: 100%;
-  padding-top: 50px;
+  /* padding-top: 50px; */
+}
+.home .el-header{
+  background-color: rgb(84, 92, 100);
+  color: white;
+  line-height: 60px;
+}
+.header-nav{
+  float: right;
+}
+.username{
+  margin-right:10px;
+}
+.login-out{
+  color: rgb(255, 208, 75);
+}
+.home h2{
+  /* display: inline-block;
+  margin:0 auto */
+  float: left;
 }
 </style>
