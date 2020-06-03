@@ -88,5 +88,6 @@ export default {
 .forget{
   display: block;
   color: #409EFF;
+  cursor: default;
 }
 </style>
