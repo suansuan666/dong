@@ -72,6 +72,7 @@ export default {
           label: "综合"
         }
       ],
+      sortKind:''
     };
   },
   methods: {
