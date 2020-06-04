@@ -72,24 +72,24 @@ export default {
           label: "综合"
         }
       ],
-      sortKind:''
+      sortKind:'jiaquan'
     };
   },
   methods: {
     search() {
-      let sortkind;
-      if (this.sortKind == "") {
-        sortkind = "jiaquan";
-      } else {
-        sortkind = this.sortKind;
-      }
+      // let sortkind;
+      // if (this.sortKind == "") {
+      //   sortkind = "jiaquan";
+      // } else {
+      //   sortkind = this.sortKind;
+      // }
       let data = {
         studentId: this.studentId,
         grade: this.grade,
         major: this.major,
         type: this.type,
         time: this.time,
-        sortKind: sortkind,
+        sortKind: this.sortKind,
         nowPage: this.nowPage,
         pageSize: this.pageSize
       };

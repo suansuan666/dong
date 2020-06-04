@@ -60,7 +60,7 @@ export default {
   data() {
     return {
       tableData: [],
-      sortKind: "",
+      sortKind: "jiaquan",
       total: 0,
       pageSize: 15,
       nowPage: 1,
@@ -88,12 +88,12 @@ export default {
   },
   methods: {
     search() {
-      let sortkind;
-      if (this.sortKind == "") {
-        sortkind = "jiaquan";
-      } else {
-        sortkind = this.sortKind;
-      }
+      // let sortkind;
+      // if (this.sortKind == "") {
+      //   sortkind = "jiaquan";
+      // } else {
+      //   sortkind = this.sortKind;
+      // }
       let data = {
         studentId: this.studentId,
         userName: this.userName,
@@ -102,7 +102,7 @@ export default {
         gradeClass: this.gradeClass,
         type: this.type,
         time: this.time,
-        sortKind: sortkind,
+        sortKind: this.sortKind,
         nowPage: this.nowPage,
         pageSize: this.pageSize
       };
